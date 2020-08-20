@@ -15,12 +15,14 @@
                 }
             ];
         
-        case 'TOOGLE_TODO':
+        case 'TOGGLE_TODO':
+          console.log("TOGGLE_TODO");
             return (state.map(todo=>{
                 return todo.id === action.id ? {...todo, completed: !todo.completed }: todo
             }));
         
         case 'REMOVE_TODO':
+          console.log("REMOVE_TODO");
             return state.filter(todo=>{
                 return todo.id !== action.id 
             });

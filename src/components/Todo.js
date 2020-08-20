@@ -4,11 +4,12 @@ import {connect} from 'react-redux';
 import {toggle_todo, remove_todo} from './../actions';
 
 const Todo = (props) =>{
-    console.log(props);
+    console.log(props.completed);
 
     const {toggle, remove} = props;
 
     const toggleTodo =()=>{
+        console.log("toggle");
         toggle(props.id);
     }
 
@@ -17,8 +18,8 @@ const Todo = (props) =>{
     }
 
     return <div className="list-item">
-                <div onClick={toggleTodo}>
-                    { props.completed ? "---------": <p>{props.id} . {props.task}</p>}
+                <div onClick={toggleTodo} >
+                    { props.completed ? "---------": <p>{props.id} . {props.task}. {props.completed}</p>}
                 </div>
                 <button onClick={removeTodo}>X</button>
             </div>

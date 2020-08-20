@@ -10,15 +10,20 @@ const TodoForm= (props)=>{
         add(todo)
     }
 
+    const errorMsg =() =>{
+        alert("Enter a task");
+    }
+
     console.log(todo);
     return <div>
         <input
             onChange={(e)=>{
                 setTodo(e.target.value);
             }}
+            placeholder="add ToDo Task"
             value={todo}
         />
-        <button onClick={addTodo}>
+        <button onClick={todo? addTodo:errorMsg}>
             +
         </button>
     </div>
