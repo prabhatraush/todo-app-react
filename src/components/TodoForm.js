@@ -1,31 +1,31 @@
 import React, {useState} from 'react';
-
-function addTodo(setTodos, todos, todo)
-{
-    todos.push(todo);
-    setTodos(todos);
-    console.log(todos);
-}
+import {connect} from 'react-redux';
+import {add_todo} from './../actions';
 
 const TodoForm= (props)=>{
-    const [todo, setTodo] = useState({});
-    console.log(props);
+    const [todo, setTodo] = useState('');
+
+    const {add} = props;
+    const addTodo =  ()=> {
+        add(todo)
+    }
+
+    console.log(todo);
     return <div>
         <input
             onChange={(e)=>{
-                setTodo({id:props.todos.length+1, task: e.target.value});
+                setTodo(e.target.value);
             }}
+            value={todo}
         />
-        <button
-            onClick={()=>{
-                
-                console.log(props.todos);
-                addTodo(props.setTodos, props.todos,todo);
-            }}
-        >
+        <button onClick={addTodo}>
             +
         </button>
     </div>
 }
 
-export default TodoForm;
+const mapDispatchToProps =(dispatch)=>({
+    add:(todo) =>  dispatch(add_todo(todo))
+});
+
+export default connect(null, mapDispatchToProps)(TodoForm);
